@@ -183,9 +183,9 @@ function restart() {
 
 function finalMessage(score: number) {
     if (score === 0)
-        return "Uff – noch Luft nach oben. Versuch’s gleich nochmal! 💪";
+        return "Uff – noch Luft nach oben. Jetzt das kantonale Datenportal Basel-Stadt besser kennenlernen! 💪";
     if (score <= 3)
-        return "Solider Start! Weiter so – beim nächsten Mal wird’s mehr. 📈";
+        return "Solide! Jetzt das kantonale Datenportal Basel-Stadt besser kennenlernen! 📈";
     if (score <= 6) return "Gut gemacht! Schon einiges richtig. 🔎";
     if (score <= 9) return "Sehr stark! Fast perfekt. 🌟";
     return "Perfekt! 10 von 10 – grandios! 🏆";
@@ -298,11 +298,45 @@ function persistResult() {
         </section>
 
         <!-- Step 3 -->
+        <!-- Step 3 -->
         <section v-else>
             <QuizSummary :score="score" :total="questions.length" />
             <p style="margin:.5rem 0 1rem 0">{{ finalMessage(score) }}</p>
-            <p style="opacity:.8; margin:.25rem 0 1rem 0">Departement: {{ dept }} · Rheinschwimmen: {{ rheinschwimmen }}</p>
+            <p style="opacity:.8; margin:.25rem 0 1rem 0">
+                Departement: {{ dept }} · Rheinschwimmen: {{ rheinschwimmen }}
+            </p>
+
             <NextButton @click="restart">Nochmal starten</NextButton>
+
+            <!-- QR code section -->
+            <div style="margin-top:2rem; text-align:center">
+                <h3>📊 Ergebnisse und Statistiken</h3>
+
+                <!-- Stats QR codes -->
+                <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:2rem; margin-top:1rem">
+                    <div style="text-align:center">
+                        <p style="margin-bottom:.5rem">Nach Departement</p>
+                        <!-- note: relative path + block centering -->
+                        <img src="/statistik_nach_departement.png"
+                             alt="Statistik nach Departement"
+                             style="display:block;width:150px;height:auto;margin:0 auto" />
+                    </div>
+                    <div style="text-align:center">
+                        <p style="margin-bottom:.5rem">Nach Rheinschwimmer*innen</p>
+                        <img src="/statistik_nach_rheinschwimmerinnen.png"
+                             alt="Statistik nach Rheinschwimmer*innen"
+                             style="display:block;width:150px;height:auto;margin:0 auto" />
+                    </div>
+                </div>
+
+                <!-- Social media QR -->
+                <h3 style="margin-top:2rem">📢 Folge uns auf Social Media</h3>
+                <div style="text-align:center; margin-top:1rem">
+                    <img src="/social_media.png"
+                         alt="Social Media"
+                         style="display:block;width:150px;height:auto;margin:0 auto" />
+                </div>
+            </div>
         </section>
     </main>
 </template>
