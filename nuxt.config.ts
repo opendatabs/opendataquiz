@@ -47,10 +47,7 @@ export default defineNuxtConfig({
             logger_bs: { loglevel: process.env.LOG_LEVEL || 'debug' },
         },
         githubToken: process.env.GITHUB_TOKEN, // server-only (unused on Pages)
-        apiUrl: process.env.API_URL, // server-only (unused on Pages)
-        public: {
-            logger_bs: { loglevel: process.env.LOG_LEVEL || "debug" },
-        },
+        apiUrl: process.env.API_URL // server-only (unused on Pages)
     },
 
     ui: { colorMode: false },
