@@ -191,6 +191,8 @@ function finalMessage(score: number) {
     return "Perfekt! 10 von 10 – grandios! 🏆";
 }
 
+const { public: pub } = useRuntimeConfig();
+
 function persistResult() {
     const payload = {
         id: runId.value,
@@ -198,39 +200,35 @@ function persistResult() {
         rheinschwimmen: rheinschwimmen.value,
         correct: score.value,
         total: questions.value.length,
-        finishedAt: new Date().toISOString(),
+        finishedAt: new Date().toISOString()
     };
 
+    // local backup
     try {
-        // Save to localStorage
-        const key = "odbs-quiz-results";
-        const current = JSON.parse(localStorage.getItem(key) || "[]");
+        const key = 'odbs-quiz-results';
+        const current = JSON.parse(localStorage.getItem(key) || '[]');
         current.push(payload);
         localStorage.setItem(key, JSON.stringify(current));
-    } catch (e) {
-        console.error("Persist failed", e);
-    }
+    } catch (e) { console.error('Persist failed', e); }
 
-    // Send to Basel-Stadt API
-    fetch(
-        "https://data.bs.ch/api/push/1.0/opendataquiz/echtzeit/push/?pushkey=ea9c1c8a70e72cd6c19fb50f04be0874d3cfb53ba1d3483fec427d79",
-        {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
+    // send to proxy (only if configured)
+    if (pub.pushProxyUrl) {
+        fetch(pub.pushProxyUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),
-        },
-    )
-        .then((res) => {
-            if (!res.ok) throw new Error(`Push failed: ${res.status}`);
-            return res.text();
         })
-        .then((data) => {
-            console.log("Push success:", data);
-        })
-        .catch((err) => {
-            console.error("Push error:", err);
-        });
+            .then((r) => {
+                if (!r.ok) throw new Error(`Push failed: ${r.status}`);
+                return r.text();
+            })
+            .then((t) => console.log('Push success:', t))
+            .catch((err) => console.error('Push error:', err));
+    } else {
+        console.warn('pushProxyUrl not configured');
+    }
 }
+
 </script>
 
 <template>

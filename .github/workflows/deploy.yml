@@ -37,6 +37,7 @@ jobs:
 
             - name: Generate static site
               env:
+                  NUXT_PUBLIC_PUSH_PROXY_URL: https://opendataquiz-push-proxy.opendatabs.workers.dev
                   DISABLE_FEEDBACK: "1"  # optional: avoid leaking tokens on static client
               run: |
                   # either script "generate": "nuxi generate" in package.json:

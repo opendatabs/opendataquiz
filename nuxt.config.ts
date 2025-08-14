@@ -42,6 +42,10 @@ export default defineNuxtConfig({
     // ⚠️ Runtime config on a static site is baked at build time.
     // Do NOT expose secrets (GITHUB_TOKEN) in public or client code.
     runtimeConfig: {
+        public: {
+            pushProxyUrl: process.env.NUXT_PUBLIC_PUSH_PROXY_URL || '', // add this
+            logger_bs: { loglevel: process.env.LOG_LEVEL || 'debug' },
+        },
         githubToken: process.env.GITHUB_TOKEN, // server-only (unused on Pages)
         apiUrl: process.env.API_URL, // server-only (unused on Pages)
         public: {
