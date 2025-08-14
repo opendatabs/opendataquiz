@@ -14,15 +14,27 @@ function cors(origin = ALLOW_ORIGIN) {
 
 export default {
     async fetch(request: Request, env: Env): Promise<Response> {
-        // CORS preflight
+        // Handle CORS preflight
         if (request.method === "OPTIONS") {
             return new Response(null, { headers: cors() });
         }
+
         if (request.method !== "POST") {
             return new Response("Method Not Allowed", { status: 405, headers: cors() });
         }
 
-        const body = await request.text(); // pass-through JSON
+        if (!env.DATA_BS_PUSH_KEY) {
+            return new Response(
+                JSON.stringify({ error: "Missing DATA_BS_PUSH_KEY" }),
+                {
+                    status: 500,
+                    headers: { "Content-Type": "application/json", ...cors() },
+                }
+            );
+        }
+
+        const body = await request.text();
+
         const upstreamUrl =
             `https://data.bs.ch/api/push/1.0/opendataquiz/echtzeit/push/?pushkey=${env.DATA_BS_PUSH_KEY}`;
 
@@ -33,10 +45,12 @@ export default {
         });
 
         const text = await upstream.text();
+
         return new Response(text, {
             status: upstream.status,
             headers: {
                 "Content-Type": "application/json",
+                "X-Upstream-Status": String(upstream.status),
                 ...cors(),
             },
         });
