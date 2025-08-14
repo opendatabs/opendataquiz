@@ -33,12 +33,12 @@ jobs:
             - name: Install deps
               run: bun install
               env:
-                  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # for GitHub Packages
+                  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Generate static site
               env:
                   NUXT_PUBLIC_PUSH_PROXY_URL: https://opendataquiz-push-proxy.opendatabs.workers.dev
-                  DISABLE_FEEDBACK: "1"  # optional: avoid leaking tokens on static client
+                  DISABLE_FEEDBACK: "1"
               run: |
                   # either script "generate": "nuxi generate" in package.json:
                   bun run generate || bunx nuxi generate

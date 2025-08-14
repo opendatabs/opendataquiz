@@ -43,7 +43,7 @@ export default defineNuxtConfig({
     // Do NOT expose secrets (GITHUB_TOKEN) in public or client code.
     runtimeConfig: {
         public: {
-            pushProxyUrl: process.env.NUXT_PUBLIC_PUSH_PROXY_URL || '', // add this
+            pushProxyUrl: process.env.NUXT_PUBLIC_PUSH_PROXY_URL || '',
             logger_bs: { loglevel: process.env.LOG_LEVEL || 'debug' },
         },
         githubToken: process.env.GITHUB_TOKEN, // server-only (unused on Pages)
