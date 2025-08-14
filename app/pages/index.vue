@@ -35,9 +35,9 @@ const questions = ref<Q[]>([
     {
         text: "An welchem Tag im Jahr 2025 hat die Station Basel-Binningen bisher die höchste Lufttemperatur gemessen?",
         choices: ["1. Januar", "2. Juli", "12. August", "13. August"],
-        answer: 1,
+        answer: 3,
         explanation:
-            "Mit 35.7 °C wurde bisher am 2. Juli die höchste Lufttemperatur im Jahr 2025 gemessen. Am 13. August war die Temperatur mit 35.4 °C tiefer, aber mit einer Luftfeuchtigkeit von 61 %... ",
+            "Mit 36 °C wurde bisher am 13. August die höchste Lufttemperatur im Jahr 2025 gemessen. Das Tagesmittel war aber am 2. Juli mit 28.5 °C höher als am 13. August mit 26.9 °C als Tagesmittel.",
         dataset: "Tägliche Klimadaten der NBCN-Station Basel-Binningen",
     },
     {
