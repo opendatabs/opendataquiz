@@ -1,6 +1,10 @@
 <script setup lang="ts">
-const props = defineProps<{ text: string; selected?: boolean; disabled?: boolean }>()
-const emit = defineEmits<{ (e:'select'): void }>()
+const props = defineProps<{
+    text: string;
+    selected?: boolean;
+    disabled?: boolean;
+}>();
+const emit = defineEmits<(e: "select") => void>();
 </script>
 
 <template>

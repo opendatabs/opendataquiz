@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{ disabled?: boolean }>()
+defineProps<{ disabled?: boolean }>();
 </script>
 
 <template>
