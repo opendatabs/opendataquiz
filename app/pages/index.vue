@@ -72,7 +72,7 @@ const questions = ref<Q[]>([
         dataset: "Baumkataster: Baumbestand",
     },
     {
-        text: "Was ist der zweitmeiste Hundename im Kanton Basel-Stadt im Jahr 2024?",
+        text: "Was ist der zweithäufigste Hundename im Kanton Basel-Stadt im Jahr 2024?",
         choices: ["Luna", "Rocky", "Nala", "Mia"],
         answer: 2,
         explanation:
