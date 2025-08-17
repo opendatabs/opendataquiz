@@ -65,10 +65,10 @@ const questions = ref<Q[]>([
         dataset: "Kandidierende der Grossratswahlen nach Geschlecht seit 1968",
     },
     {
-        text: "Was ist laut OGD der aktuelle Baumbestand vom Kanton Basel-Stadt?",
+        text: "Der Baumkataster umfasst den durch die Stadtgärtnerei Basel (Gebiet Stadt Basel) und die Gemeinde Riehen (Gebiet Riehen) gepflegten Baumbestand. Was ist laut OGD der aktuelle Baumbestand des Baumkatasters?",
         choices: ["31’905", "22’826", "14’271", "45’107"],
         answer: 0,
-        explanation: "",
+        explanation: "Der Baumkataster umfasst aktuell 31’905 Bäume.",
         dataset: "Baumkataster: Baumbestand",
     },
     {
@@ -76,7 +76,7 @@ const questions = ref<Q[]>([
         choices: ["Luna", "Rocky", "Nala", "Mia"],
         answer: 2,
         explanation:
-            "Die Rangliste ist : 1) Luna, 2) Nala, 3) Rocky, 4) Kira, 5) Mia",
+            "Die Rangliste für das Jahr 2024 ist : 1) Luna, 2) Nala, 3) Rocky, 4) Kira, 5) Mia",
         dataset: "Hundenamen im Kanton Basel-Stadt seit 2008",
     },
     {
@@ -275,8 +275,13 @@ function persistResult() {
 
             <div role="list" style="display:grid;gap:.5rem;margin:1rem 0">
                 <AnswerChoice
-                    v-for="(c,i) in questions[idx].choices" :key="i"
-                    :text="c" :selected="selected===i" :disabled="submitted"
+                    v-for="(c,i) in questions[idx].choices"
+                    :key="i"
+                    :text="c"
+                    :selected="selected===i"
+                    :disabled="submitted"
+                    :correct="submitted && i === questions[idx].answer"
+                    :wrong="submitted && selected===i && i !== questions[idx].answer"
                     @select="onSelect(i)"
                 />
             </div>
@@ -310,31 +315,20 @@ function persistResult() {
 
             <!-- QR code section -->
             <div style="margin-top:2rem; text-align:center">
-                <h3>📊 Ergebnisse und Statistiken</h3>
-
                 <!-- Stats QR codes -->
                 <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:2rem; margin-top:1rem">
                     <div style="text-align:center">
-                        <p style="margin-bottom:.5rem">Nach Departement</p>
-                        <!-- note: relative path + block centering -->
-                        <img src="/statistik_nach_departement.png"
-                             alt="Statistik nach Departement"
+                        <p style="margin-bottom:.5rem">📊 Ergebnisse und Statistiken</p>
+                        <img src="/statistik.png"
+                             alt="QR Code für Ergebnisse und Statistiken"
                              style="display:block;width:150px;height:auto;margin:0 auto" />
                     </div>
                     <div style="text-align:center">
-                        <p style="margin-bottom:.5rem">Nach Rheinschwimmer*innen</p>
-                        <img src="/statistik_nach_rheinschwimmerinnen.png"
-                             alt="Statistik nach Rheinschwimmer*innen"
+                        <p style="margin-bottom:.5rem">📢 Folge uns auf Social Media</p>
+                        <img src="/social_media.png"
+                             alt="Social Media"
                              style="display:block;width:150px;height:auto;margin:0 auto" />
                     </div>
-                </div>
-
-                <!-- Social media QR -->
-                <h3 style="margin-top:2rem">📢 Folge uns auf Social Media</h3>
-                <div style="text-align:center; margin-top:1rem">
-                    <img src="/social_media.png"
-                         alt="Social Media"
-                         style="display:block;width:150px;height:auto;margin:0 auto" />
                 </div>
             </div>
         </section>

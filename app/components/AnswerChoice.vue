@@ -1,45 +1,53 @@
 <script setup lang="ts">
-const props = defineProps<{
-    text: string;
-    selected?: boolean;
-    disabled?: boolean;
-}>();
-const emit = defineEmits<(e: "select") => void>();
+defineProps<{
+    text: string
+    selected?: boolean
+    disabled?: boolean
+    correct?: boolean
+    wrong?: boolean
+}>()
+
+const emit = defineEmits<{ (e: 'select'): void }>()
 </script>
 
 <template>
     <button
-        class="answer-btn"
-        :class="{ selected }"
         :disabled="disabled"
-        @click="emit('select')"
+        @click="$emit('select')"
+        :class="[
+      'answer-btn',
+      selected && !correct && !wrong ? 'selected' : '',
+      correct ? 'correct' : '',
+      wrong ? 'wrong' : ''
+    ]"
     >
         {{ text }}
     </button>
 </template>
 
 <style scoped>
-.answer-btn{
-    padding:.75rem;
-    text-align:left;
-    background: var(--answer-btn-bg);
-    color: var(--answer-btn-text);
-    border: 2px solid var(--border);
-    border-radius:.5rem;
-    transition: background .15s ease, color .15s ease, transform .05s ease, border-color .15s ease, box-shadow .15s ease;
+.answer-btn {
+    padding: 0.75rem 1rem;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    text-align: left;
+    transition: all 0.2s ease;
 }
-.answer-btn:hover{
-    background: var(--answer-btn-hover-bg);
-    color: var(--answer-btn-hover-text);
+.answer-btn:hover:not(:disabled) {
+    background: #f0f0f0;
+    cursor: pointer;
 }
-.answer-btn.selected{
-    border-color: var(--question);
-    box-shadow: 0 0 0 3px color-mix(in oklab, var(--question) 25%, transparent);
-    background: color-mix(in oklab, var(--answer-btn-bg) 88%, var(--question));
-    color: #0b1d12;
+.answer-btn.selected {
+    border-color: #007bff;
+    background: #e7f1ff;
 }
-.answer-btn:disabled{
-    opacity:.7; cursor:not-allowed;
+.answer-btn.correct {
+    border-color: #28a745;
+    background: #d4edda;
 }
-.answer-btn:active{ transform: scale(.99); }
+.answer-btn.wrong {
+    border-color: #dc3545;
+    background: #f8d7da;
+}
 </style>
