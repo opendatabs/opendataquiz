@@ -34,57 +34,92 @@ const rheinschwimmen = ref<(typeof rheinschwimmenOptions)[number] | null>(null);
 const questions = ref<Q[]>([
     {
         text: "An welchem Tag im Jahr 2025 hat die Station Basel-Binningen bisher die höchste Lufttemperatur gemessen?",
-        choices: ["1. Januar", "2. Juli", "12. August", "13. August"],
+        choices: [
+            "1. Januar",
+            "2. Juli",
+            "12. August",
+            "13. August"
+        ],
         answer: 3,
         explanation:
-            "Mit 36 °C wurde bisher am 13. August die höchste Lufttemperatur im Jahr 2025 gemessen. Das Tagesmittel war aber am 2. Juli mit 28.5 °C höher als am 13. August mit 26.9 °C als Tagesmittel.",
+            "Mit 36 °C wurde bisher am 13. August die höchste Lufttemperatur im Jahr 2025 gemessen. Das Tagesmittel war allerdings am 2. Juli mit 28.5 °C höher als am 13. August mit 26.9 °C als Tagesmittel.",
         dataset: "Tägliche Klimadaten der NBCN-Station Basel-Binningen",
     },
     {
         text: "Wie viel Wohnviertel besitzt der Kanton Basel-Stadt?",
-        choices: ["4, wieso sonst heisst es Wohnviertel?", "21", "17", "18"],
-        answer: 1,
+        choices: [
+            "4, wieso sonst heisst es Wohnviertel?",
+            "17",
+            "21",
+            "23"
+        ],
+        answer: 2,
         explanation:
             "Die Wohnviertel sind: Altstadt Grossbasel, Vorstädte, Am Ring, Breite, St. Alban, Gundeldingen, Bruderholz, Bachletten, Gotthelf, Iselin, St. Johann, Altstadt Kleinbasel, Clara, Wettstein, Hirzbrunnen, Rosental, Matthäus, Klybeck, Kleinhüningen, Riehen, Bettingen.",
         dataset: "Statistische Raumeinheiten: Wohnviertel",
     },
     {
         text: "Wann war der Wasserstand im Rhein im Jahr 2025 bisher am höchsten?",
-        choices: ["3. August", "28. Januar", "10. März", "20. Mai"],
-        answer: 0,
+        choices: 
+            ["28. Januar",
+             "10. März",
+             "20. Mai",
+             "3. August"
+            ],
+        answer: 3,
         explanation:
             "Am 3. August 2025 wurde der höchste Wasserstand im Rhein mit 247.379 m gemessen.",
         dataset: "Rhein Wasserstand, Pegel und Abfluss",
     },
     {
-        text: "In welchem Jahr war bei der Grossratswahl der Anteil der gewählten Frauen im Vergleich zu allen andern Jahren am höchsten?",
-        choices: ["2024", "2020", "2016", "2012"],
-        answer: 0,
+        text: "In welchem Jahr war bei den Grossratswahlen der Anteil der gewählten Frauen im Vergleich zu allen andern Jahren am höchsten?",
+        choices: [
+            "2012",
+            "2016",
+            "2020",
+            "2024"
+        ],
+        answer: 3,
         explanation:
-            "In den letzten Grossratswahlen 2024 wurden 46% der Sitze von Frauen gewonnen, was den höchsten Anteil in der Geschichte der Wahlen darstellt.",
+            "Bei den letzten Grossratswahlen 2024 wurden 46% der Sitze von Frauen gewonnen, was den höchsten Anteil in der Geschichte der Wahlen darstellt.",
         dataset: "Kandidierende der Grossratswahlen nach Geschlecht seit 1968",
     },
     {
-        text: "Der Baumkataster umfasst den durch die Stadtgärtnerei Basel (Gebiet Stadt Basel) und die Gemeinde Riehen (Gebiet Riehen) gepflegten Baumbestand. Was ist laut OGD der aktuelle Baumbestand des Baumkatasters?",
-        choices: ["31’905", "22’826", "14’271", "45’107"],
-        answer: 0,
-        explanation: "Der Baumkataster umfasst aktuell 31’905 Bäume.",
+        text: "Das Baumkataster umfasst den durch die Stadtgärtnerei Basel (Gebiet Stadt Basel) und die Gemeinde Riehen (Gebiet Riehen) gepflegten Baumbestand. Was ist laut OGD der aktuelle Baumbestand des Baumkatasters?",
+        choices: [
+            "14’271",
+            "22’826",
+            "31’905",
+            "45’107"
+        ],
+        answer: 2,
+        explanation: "Das Baumkataster umfasst laut OGD aktuell 31’905 Bäume.",
         dataset: "Baumkataster: Baumbestand",
     },
     {
         text: "Was ist der zweithäufigste Hundename im Kanton Basel-Stadt im Jahr 2024?",
-        choices: ["Luna", "Rocky", "Nala", "Mia"],
+        choices: [
+            "Luna",
+            "Rocky",
+            "Nala",
+            "Mia"
+        ],
         answer: 2,
         explanation:
-            "Die Rangliste für das Jahr 2024 ist : 1) Luna, 2) Nala, 3) Rocky, 4) Kira, 5) Mia",
+            "Die Rangliste für das Jahr 2024 lautet: 1) Luna, 2) Nala, 3) Rocky, 4) Kira, 5) Mia",
         dataset: "Hundenamen im Kanton Basel-Stadt seit 2008",
     },
     {
         text: "In welchem dieser Jahre hat die Stadtreinigung laut OGD am meisten Sprayereien an öffentlichen Anlagen entfernt?",
-        choices: ["2021", "2022", "2023", "2024"],
+        choices: [
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+        ],
         answer: 0,
         explanation:
-            "Die Stadtreinigung reinigt jährlich mehr als 1000 Sprayereien an öffentlichen Anlagen und privaten Gebäuden. Im Jahr 2021 wurden 808 Sprayereien an öffentlichen Anlagen entfernt, was den höchsten Wert in den letzten Jahren darstellt.",
+            "Die Stadtreinigung reinigt jährlich mehr als 1000 Sprayereien an öffentlichen Anlagen und privaten Gebäuden. Im Jahr 2021 wurden 808 Sprayereien an öffentlichen Anlagen entfernt, was den höchsten Wert der letzten Jahren darstellt.",
         dataset: "Sprayereien",
     },
     {
@@ -93,32 +128,37 @@ const questions = ref<Q[]>([
             "Ausserbergweg",
             "Es gibt keinen solchen Strassennamen",
             "Grenzacherstrasse",
-            "Der krumme Weg",
+            "Der krumme Weg"
         ],
         answer: 1,
         explanation:
-            "Es gibt mehere Strassennamen, die in zwei der drei Gemeinden vorkommen darunter der Ausserbergweg, die Grenzacherstrasse und der Krumme Weg. Aber es gibt keinen Strassennamen, der in allen drei Gemeinden vorkommt.",
+            "Es gibt mehrere Strassennamen, die in zwei der drei Gemeinden vorkommen darunter der Ausserbergweg, die Grenzacherstrasse sowie der krumme Weg. Es gibt allerdings keinen Strassennamen, der in allen drei Gemeinden vorkommt.",
         dataset: "Strassennamen",
     },
     {
-        text: "Was ist seit 2017 bis 2024 jährlich stetig gesunken?",
+        text: "Was ist zwischen 2017 und 2024 jährlich stetig gesunken?",
         choices: [
             "Anzahl der Eheschliessungen nach Trauungsdatum",
             "Kantonaler Stromverbrauch in kWh",
-            "Durchschnitt der Anteil Sozialhilfeempfänger nach Wohnviertel",
-            "Bezahlte Ordnungsbussen",
+            "Durchschnitt des Anteils Sozialhilfeempfangende nach Wohnviertel",
+            "Bezahlte Ordnungsbussen"
         ],
         answer: 2,
-        explanation: "",
+        explanation: "Während es bei den anderen Datensätzen immer mindestens ein Jahr gab, indem der Wert wieder gestiegen ist, ist der Durschnitt des Anteils Sozialhilfeempfangende von 6% auf 4% jedes Jahr stetig gesunken.",
         dataset:
             "Eheschliessungen nach Trauungsdatum; Kantonaler Stromverbrauch; Kennzahlen zu den Basler Wohnvierteln und Landgemeinden; Ordnungsbussen",
     },
     {
         text: "Wie viel Datensätze sind im kantonalen Datenportal des Kantons Basel-Stadt aktuell verfügbar?",
-        choices: ["101", "316", "42", "222"],
-        answer: 1,
+        choices: [
+            "42",
+            "101",
+            "222",
+            "317"
+        ],
+        answer: 3,
         explanation:
-            "316 Datensätze sind im kantonalen Datenportal des Kantons Basel-Stadt aktuell verfügbar. Diese Zahl ändert sich laufend, da neue Datensätze hinzugefügt und bestehende aktualisiert werden.",
+            "317 Datensätze sind im kantonalen Datenportal des Kantons Basel-Stadt aktuell verfügbar. Diese Zahl ändert sich laufend, da neue Datensätze hinzugefügt und bestehende aktualisiert werden.",
         dataset: "OGD Datensätze",
     },
 ]);
